@@ -1,0 +1,204 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="smarthr_pay.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <style>
+        /* Reset CSS */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Basic styles */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            color: #fff;
+            background-color: #0c2340;
+            padding: 1.5rem 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+            nav a {
+                font-size: 1.125rem;
+                font-weight: bold;
+                color: #1f2937;
+                padding: 0.5rem 1rem;
+                text-decoration: none;
+            }
+
+                nav a:hover {
+                    color: #4299e1;
+                }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            width: 33.333%;
+            background-color: #f3f4f6;
+            padding: 1.5rem;
+        }
+
+            .sidebar h2 {
+                font-size: 1.5rem;
+                font-weight: bold;
+                margin-bottom: 1.5rem;
+            }
+
+            .sidebar label {
+                display: block;
+                margin-bottom: 0.5rem;
+                font-size: 1.125rem;
+                font-weight: bold;
+            }
+
+            .sidebar input[type="radio"] {
+                margin-right: 0.5rem;
+            }
+
+        .main-content {
+            flex: 2;
+            overflow: hidden;
+            padding: 1.5rem;
+        }
+
+            .main-content h2 {
+                font-size: 1.5rem;
+                font-weight: bold;
+                margin-bottom: 1.5rem;
+            }
+
+            .main-content p {
+                font-size: 1.125rem;
+                font-weight: normal;
+                line-height: 1.5;
+                margin-bottom: 1.5rem;
+            }
+
+            .main-content table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+                .main-content table th,
+                .main-content table td {
+                    font-size: 12px;
+                    font-weight: normal;
+                    padding: 0.75rem;
+                    text-align: left;
+                    border-bottom: 1px solid #e5e7eb;
+                }
+
+                .main-content table th {
+                    font-weight: bold;
+                }
+
+                .main-content table td {
+                    vertical-align: top;
+                }
+
+        .flex-container {
+            display: flex;
+        }
+
+        @media screen and (max-width: 768px) {
+            .flex-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .main-content {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        
+         <!-- Thành phần 1: Tiêu đề -->
+    <header>
+        <h1>CEO Dashboard Interface</h1>
+    </header>
+
+    <!-- Thành phần 2: Menu -->
+    <nav>
+        
+        <a href="Home.aspx">Home</a>
+        <a href="#">Notification</a>
+        <a href="#">Report</a>
+        <a href="#">Account Management</a>
+        <a href="withData.aspx">Input data</a>
+    </nav>
+
+    <!-- Thành phần 3 và 4: Thanh dọc và Phần data -->
+    <section class="flex-container">
+        <div class="sidebar">
+            <h2>Select the information you want to see:</h2>
+            <label>
+                <input type="radio" name="info" value="earnings" onclick="redirectToTotalEarnings()">
+                Total earnings by department and employee type
+            </label>
+            <label>
+                <input type="radio" name="info" value="vacation">
+                Total vacation days taken
+            </label>
+            <label>
+                <input type="radio" name="info" value="benefits">
+                Average benefits paid
+            </label>
+            <label>
+                <input type="radio" name="info" value="hiring">
+                Hiring anniversary alerts
+            </label>
+            <label>
+                <input type="radio" name="info" value="vacation-alerts">
+                Vacation days alerts
+            </label>
+            <label>
+                <input type="radio" name="info" value="benefits-alerts">
+                Benefits plan change alerts
+            </label>
+            <label>
+                <input type="radio" name="info" value="birthday-alerts">
+                Birthday alerts
+            </label>
+        </div>
+        <div class="main-content">
+           <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+           
+        </div>
+    </section>
+    </form>
+    <script>
+    function redirectToTotalEarnings() {
+        window.location.href = "totalEarning.aspx";
+    }
+    </script>
+</body>
+</html>
